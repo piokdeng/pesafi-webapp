@@ -1,0 +1,20 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black Background -->
+  <rect width="800" height="600" fill="#000000"/>
+
+  <!-- Mobile Phone Icon -->
+  <path d="M225 290C225 273.431 238.431 260 255 260H335C351.569 260 365 273.431 365 290V490C365 506.569 351.569 520 335 520H255C238.431 520 225 506.569 225 490V290Z" fill="#16A34A" stroke="#16A34A" stroke-width="8"/>
+  <rect x="245" y="280" width="90" height="120" rx="4" fill="white"/>
+  <path d="M270 300H310M270 320H310M270 340H310" stroke="#16A34A" stroke-width="6" stroke-linecap="round"/>
+  <rect x="280" y="285" width="30" height="6" rx="3" fill="#E5E5E5"/>
+  <circle cx="295" cy="475" r="15" fill="white"/>
+
+  <!-- "Pesa" Text in Green -->
+  <text x="380" y="440" font-family="Arial, sans-serif" font-size="140" font-weight="bold" fill="#16A34A">Pesa</text>
+
+  <!-- "Fi" Text in Orange -->
+  <text x="680" y="440" font-family="Arial, sans-serif" font-size="140" font-weight="bold" fill="#F97316">Fi</text>
+
+  <!-- Arrow accent on Fi -->
+  <polygon points="830,330 870,370 830,410" fill="#F97316"/>
+</svg>
