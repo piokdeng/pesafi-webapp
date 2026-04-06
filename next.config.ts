@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Inlines App Router CSS into the HTML response in production so Tailwind/layout
+  // still applies if `/_next/static/css/*` fails to load (strict proxies, previews, etc.).
+  // Dev still uses linked stylesheets (required for HMR).
+  experimental: {
+    inlineCss: true,
+  },
   images: {
     remotePatterns: [
       {
