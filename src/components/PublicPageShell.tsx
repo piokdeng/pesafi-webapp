@@ -5,10 +5,20 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useRef, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Menu, Search, Bell, UserCircle, LayoutDashboard } from "lucide-react";
+import {
+  Menu,
+  Search,
+  Bell,
+  UserCircle,
+  LayoutDashboard,
+  Users,
+  Settings,
+  Building2,
+  LogOut,
+} from "lucide-react";
 import { PesafiLogoCompact } from "@/components/PesafiLogo";
 import { cn } from "@/lib/utils";
-import { useSupabaseAuth } from "@/lib/supabase-auth-client";
+import { useSupabaseAuth, supabaseAuthClient } from "@/lib/supabase-auth-client";
 import {
   Drawer,
   DrawerClose,
@@ -46,8 +56,9 @@ function NavDrawerLink({
 export function PublicPageShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const { user, loading: authLoading } = useSupabaseAuth();
+  const { user, loading: authLoading, signOut } = useSupabaseAuth();
   const [navOpen, setNavOpen] = useState(false);
+  const [hasBusinessProfile, setHasBusinessProfile] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
   const lastScrollRef = useRef(0);
   const [searchQuery, setSearchQuery] = useState("");
@@ -81,6 +92,19 @@ export function PublicPageShell({ children }: { children: React.ReactNode }) {
 
   const isLogin = pathname === "/login";
   const isRegister = pathname === "/register";
+
+  useEffect(() => {
+    if (!user?.id) {
+      setHasBusinessProfile(false);
+      return;
+    }
+    supabaseAuthClient
+      .from("business_profile")
+      .select("id")
+      .eq("user_id", user.id)
+      .single()
+      .then(({ data }) => setHasBusinessProfile(!!data));
+  }, [user?.id]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -153,6 +177,44 @@ export function PublicPageShell({ children }: { children: React.ReactNode }) {
                     Notifications
                   </span>
                 </NavDrawerLink>
+                <NavDrawerLink href="/dashboard/contacts" onNavigate={closeNav}>
+                  <span className="flex items-center gap-2">
+                    <Users className="h-4 w-4" />
+                    Contacts
+                  </span>
+                </NavDrawerLink>
+                <NavDrawerLink href="/dashboard/settings" onNavigate={closeNav}>
+                  <span className="flex items-center gap-2">
+                    <Settings className="h-4 w-4" />
+                    Settings
+                  </span>
+                </NavDrawerLink>
+                {hasBusinessProfile ? (
+                  <NavDrawerLink
+                    href="/business/dashboard"
+                    onNavigate={closeNav}
+                  >
+                    <span className="flex items-center gap-2">
+                      <Building2 className="h-4 w-4" />
+                      Switch to Business
+                    </span>
+                  </NavDrawerLink>
+                ) : null}
+                <div className="my-2 border-t border-border" />
+                <button
+                  type="button"
+                  className="w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-red-600 transition-colors hover:bg-red-500/10"
+                  onClick={async () => {
+                    closeNav();
+                    await signOut();
+                    window.location.href = "/";
+                  }}
+                >
+                  <span className="flex items-center gap-2">
+                    <LogOut className="h-4 w-4" />
+                    Log out
+                  </span>
+                </button>
               </>
             ) : (
               <>
