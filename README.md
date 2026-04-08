@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 PesaFi.ai - The Web3 Venmo for Africa
 
 [![Next.js](https://img.shields.io/badge/Next.js-15.4-black)](https://nextjs.org/)
@@ -614,3 +615,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 *Last Updated: January 2025*
 *Version: 1.0*
 *Status: Production Beta*
+=======
+# KermaPay-PesaFi-Update-
+Building the Venmo/Robinhood/Kalshi/FX of Africa
+>>>>>>> 584b67e824db0f726025b7e39778687bd210a05d
