@@ -4,7 +4,7 @@ import { PublicPageShell } from "@/components/PublicPageShell";
 
 /**
  * Same chrome as the public site (nav, search, background) so logged-in
- * routes match the pre-login KermaPay experience.
+ * routes match the pre-login PesaFi experience.
  */
 export default function DashboardLayout({
   children,
