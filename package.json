@@ -16,6 +16,7 @@
     "supabase:logs": "supabase functions logs"
   },
   "dependencies": {
+    "@coinbase/cdp-sdk": "^1.47.0",
     "@coinbase/onchainkit": "^1.1.1",
     "@coinbase/wallet-sdk": "^4.3.7",
     "@headlessui/react": "^2.2.8",
