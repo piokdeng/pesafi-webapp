@@ -6,6 +6,10 @@ import { paymasterService } from '@/lib/paymaster';
 import { ethereumAddressSchema, usdcAmountSchema, normalizeAddress, validateInput } from '@/lib/validation';
 import { ensureGasBalance } from '@/lib/gas-treasury';
 
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204 });
+}
+
 const USDC_ADDRESS = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'; // Base Mainnet USDC
 const BASE_RPC_URL = process.env.NEXT_PUBLIC_RPC_URL || 'https://mainnet.base.org';
 
